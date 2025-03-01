@@ -1,139 +1,64 @@
-/* ------------------------------
-   Global Styles & Resets
------------------------------- */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Theropon Digital - Home</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-body {
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  color: #333;
-  background-color: #fff;
-}
+  <!-- Header & Navigation -->
+  <header>
+    <div class="container navbar">
+      <div class="logo">Theropon Digital</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
 
-/* A simple container to limit content width and add side padding */
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>AI That Works for You</h1>
+    <h2>Simple, Secure, and Tailored to Your Business</h2>
+    <button class="cta-btn" onclick="window.location.href='contact.html'">Get Started</button>
+  </div>
 
-/* ------------------------------
-   Header & Navigation
------------------------------- */
-header {
-  background-color: #f8f8f8;
-  padding: 10px 0;
-  margin-bottom: 20px;
-}
+  <!-- Main Content -->
+  <main class="container">
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+    <!-- Key Benefits -->
+    <section class="mb-60">
+      <h2>Why Theropon Digital?</h2>
+      <ul>
+        <li>Simple & Transparent: No hidden fees or complicated jargon</li>
+        <li>Full-Service Implementation: We do the heavy lifting so you can focus on what you do best</li>
+        <li>Security-Focused: Cloud or on-premises solutions protect your data</li>
+        <li>Hands-On Founders: Direct access to our leadership, every step of the way</li>
+      </ul>
+    </section>
 
-.navbar .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
+    <!-- Approach Preview -->
+    <section>
+      <h3>Our Approach</h3>
+      <p>
+        We start with a conversation, build a Proof of Concept, then expand. It’s a simple, transparent process that 
+        keeps you in control and delivers real results fast.
+      </p>
+      <p><a href="services.html">Explore Our Services</a></p>
+    </section>
 
-.navbar ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
+  </main>
 
-.navbar li a {
-  text-decoration: none;
-  color: #333;
-  transition: color 0.3s;
-}
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Theropon Digital. All rights reserved.</p>
+  </footer>
 
-.navbar li a:hover {
-  color: #007BFF; /* Hover color */
-}
-
-/* ------------------------------
-   Hero Section (Home Page)
------------------------------- */
-.hero {
-  text-align: center;
-  padding: 80px 20px;
-  background-color: #eef2f6;
-  margin-bottom: 40px;
-}
-
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-}
-
-.hero h2 {
-  font-size: 1.25rem;
-  margin-bottom: 40px;
-  color: #555;
-}
-
-.hero .cta-btn {
-  padding: 15px 30px;
-  font-size: 1rem;
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.hero .cta-btn:hover {
-  background-color: #0056b3;
-}
-
-/* ------------------------------
-   Section Headings
------------------------------- */
-section h2,
-section h3 {
-  margin-bottom: 15px;
-  font-weight: bold;
-}
-
-/* ------------------------------
-   Spacing Utilities
------------------------------- */
-.mb-40 {
-  margin-bottom: 40px;
-}
-
-.mb-60 {
-  margin-bottom: 60px;
-}
-
-/* ------------------------------
-   Grid / Services Layout
------------------------------- */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-/* ------------------------------
-   Footer
------------------------------- */
-footer {
-  background-color: #f8f8f8;
-  padding: 20px 0;
-  text-align: center;
-  margin-top: 40px;
-}
-
-footer p {
-  color: #555;
-  font-size: 0.9rem;
-}
+</body>
+</html>
