@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agents Elite – Stylish Single-File</title>
+  <meta name="description" content="Agents Elite: A modern, stylish real estate landing page. No external images or dependencies." />
+  <meta name="keywords" content="real estate, luxury homes, property listings, agents, single-page" />
+  <meta name="robots" content="index, follow" />
+
+  <style>
+    /* Base Reset & Box Sizing */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Smooth Animations & Font */
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      line-height: 1.6;
+      background: #fefefe;
+      overflow-x: hidden; /* Hide any horizontal scroll from wave shapes */
+    }
+
+    /* Container Utility */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2; /* So it sits above wave backgrounds */
+    }
+
+    /* Header / Navigation */
+    .site-header {
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 999; /* Keep nav on top when scrolling */
+    }
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    .logo h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #333;
+    }
+    .main-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .main-nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      position: relative;
+      padding: 0.3rem 0;
+      transition: color 0.3s ease;
+    }
+    /* Fancy underline effect on nav hover */
+    .main-nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(135deg, #ff6f91, #ff9671);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+    .main-nav a:hover {
+      color: #666;
+    }
+    .main-nav a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+      /* Animated gradient background */
+      background: linear-gradient(-45deg, #a4508b, #5f0a87, #b91d73, #f53844);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      padding: 2rem 1rem;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .hero-content {
+      max-width: 600px;
+      animation: fadeInUp 1.2s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .hero-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .cta-button {
+      display: inline-block;
+      background: #333;
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    .cta-button:hover {
+      background: #555;
+    }
+
+    /* Wave Separator (Top of About Section) */
+    .wave-top {
+      position: relative;
+      width: 100%;
+      height: 100px;
+      background: #fefefe; /* Matches body background */
+      margin-top: -100px; /* Pull up to overlap hero */
+      z-index: 1;
+      clip-path: polygon(0 0, 100% 60%, 100% 100%, 0 100%);
+    }
+
+    /* About Section */
+    .about-section {
+      background: #fefefe;
+      padding: 5rem 0 3rem;
+      text-align: center;
+    }
+    .about-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .about-section p {
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    /* Wave Separator (Bottom of About Section, top of Services) */
+    .wave-bottom {
+      position: relative;
+      width: 100%;
+      height: 100px;
+      background: #f9f9f9;
+      clip-path: polygon(0 0, 100% 0, 100% 40%, 0 100%);
+      z-index: 1;
+      margin-bottom: -100px; /* Overlap next section */
+    }
+
+    /* Services Section */
+    .services-section {
+      padding: 5rem 0 3rem;
+      background: #f9f9f9;
+      text-align: center;
+    }
+    .services-section h2 {
+      margin-bottom: 2rem;
+      color: #333;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+    .service-item {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    .service-item h3 {
+      margin-bottom: 0.8rem;
+      color: #333;
+    }
+    .service-item p {
+      color: #666;
+    }
+
+    /* Wave Separator (Bottom of Services, top of Listings) */
+    .wave-bottom-services {
+      position: relative;
+      width: 100%;
+      height: 100px;
+      background: #fefefe;
+      clip-path: polygon(0 60%, 100% 0, 100% 100%, 0 100%);
+      margin-bottom: -100px;
+    }
+
+    /* Listings Section */
+    .listings-section {
+      padding: 5rem 0 3rem;
+      text-align: center;
+      background: #fefefe;
+    }
+    .listings-section h2 {
+      margin-bottom: 2rem;
+      color: #333;
+    }
+    .listings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .listing-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 1rem;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .listing-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    .listing-card h3 {
+      margin: 0 0 0.3rem;
+      font-size: 1.2rem;
+      color: #333;
+    }
+    .listing-card p {
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    .details-button {
+      display: inline-block;
+      background: #333;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      padding: 0.5rem 1rem;
+      align-self: flex-start;
+    }
+    .details-button:hover {
+      background: #555;
+    }
+
+    /* Wave Separator (Bottom of Listings, top of Team) */
+    .wave-bottom-listings {
+      position: relative;
+      width: 100%;
+      height: 100px;
+      background: #f9f9f9;
+      clip-path: polygon(0 0, 100% 30%, 100% 100%, 0 100%);
+      margin-bottom: -100px;
+    }
+
+    /* Team Section */
+    .team-section {
+      padding: 5rem 0 3rem;
+      background: #f9f9f9;
+      text-align: center;
+    }
+    .team-section h2 {
+      margin-bottom: 2rem;
+      color: #333;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      justify-items: center;
+    }
+    .team-member {
+      max-width: 250px;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .team-member:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    .team-member h3 {
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+    .team-member p {
+      color: #666;
+    }
+
+    /* Wave Separator (Bottom of Team, top of Testimonials) */
+    .wave-bottom-team {
+      position: relative;
+      width: 100%;
+      height: 100px;
+      background: #fff;
+      clip-path: polygon(0 80%, 100% 40%, 100% 100%, 0 100%);
+      margin-bottom: -100px;
+    }
+
+    /* Testimonials Section */
+    .testimonials-section {
+      padding: 5rem 0 3rem;
+      text-align: center;
+      background: #fff;
+    }
+    .testimonials-section h2 {
+      margin-bottom: 2rem;
+      color: #333;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .testimonial-item {
+      background: #fff;
+      border-radius: 5px;
+      padding: 2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      font-style: italic;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .testimonial-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    .testimonial-item p {
+      color: #555;
+    }
+    .testimonial-item h4 {
+      margin-top: 1rem;
+      font-style: normal;
+      font-weight: 600;
+      color: #333;
+    }
+
+    /* Wave Separator (Bottom of Testimonials, top of Contact) */
+    .wave-bottom-testimonials {
+      position: relative;
+      width: 100%;
+      height: 100px;
+      background: #fff;
+      clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
+      margin-bottom: -100px;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      padding: 5rem 0 3rem;
+      background: linear-gradient(135deg, #ff6f91, #ff9671);
+      text-align: center;
+      color: #333;
+    }
+    .contact-section h2 {
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    .contact-section p {
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #444;
+    }
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .form-row {
+      margin-bottom: 1rem;
+    }
+    .form-row label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: #333;
+    }
+    .form-row input,
+    .form-row textarea {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    .submit-button {
+      display: inline-block;
+      background: #333;
+      color: #fff;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    .submit-button:hover {
+      background: #555;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+    }
+    .site-footer p {
+      margin: 0;
+    }
+
+    /* Responsive Tweaks */
+    @media (max-width: 768px) {
+      .hero-content h2 {
+        font-size: 2rem;
+      }
+      .main-nav ul {
+        flex-wrap: wrap;
+      }
+      .header-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header / Navigation -->
+  <header class="site-header">
+    <div class="container header-container">
+      <div class="logo">
+        <h1>Agents Elite</h1>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#listings">Listings</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="hero-content">
+      <h2>Redefining Real Estate</h2>
+      <p>Discover the finest homes, services, and opportunities with top-tier agents at your side.</p>
+      <a href="#contact" class="cta-button">Get in Touch</a>
+    </div>
+  </section>
+
+  <!-- Wave Overlap -->
+  <div class="wave-top"></div>
+
+  <!-- About Section -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>
+        At Agents Elite, we combine local expertise with global reach. Our mission is to offer
+        unparalleled real estate services to buyers, sellers, and investors. With a focus on
+        innovation and personalized attention, we help our clients achieve their property goals
+        efficiently and confidently.
+      </p>
+    </div>
+  </section>
+
+  <div class="wave-bottom"></div>
+
+  <!-- Services Section -->
+  <section class="services-section" id="services">
+    <div class="container">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <div class="service-item">
+          <h3>Personalized Search</h3>
+          <p>We listen to your needs and handpick listings that align with your lifestyle and budget.</p>
+        </div>
+        <div class="service-item">
+          <h3>Sellers &amp; Marketing</h3>
+          <p>From staging and marketing to negotiation, we position your property for maximum exposure.</p>
+        </div>
+        <div class="service-item">
+          <h3>Commercial Deals</h3>
+          <p>We also specialize in commercial real estate transactions, ensuring you get the best ROI.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-bottom-services"></div>
+
+  <!-- Listings Section -->
+  <section class="listings-section" id="listings">
+    <div class="container">
+      <h2>Featured Listings</h2>
+      <div class="listings-grid">
+        <div class="listing-card">
+          <h3>Modern Penthouse</h3>
+          <p>3 Bed, 2 Bath • Manhattan, NY</p>
+          <a href="#" class="details-button">View Details</a>
+        </div>
+        <div class="listing-card">
+          <h3>Beachside Villa</h3>
+          <p>5 Bed, 5 Bath • Malibu, CA</p>
+          <a href="#" class="details-button">View Details</a>
+        </div>
+        <div class="listing-card">
+          <h3>Luxury Condo</h3>
+          <p>2 Bed, 2 Bath • Miami, FL</p>
+          <a href="#" class="details-button">View Details</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-bottom-listings"></div>
+
+  <!-- Team Section -->
+  <section class="team-section" id="team">
+    <div class="container">
+      <h2>Meet Our Team</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <h3>John Doe</h3>
+          <p>Lead Agent &amp; Founder</p>
+        </div>
+        <div class="team-member">
+          <h3>Jane Smith</h3>
+          <p>Luxury Property Specialist</p>
+        </div>
+        <div class="team-member">
+          <h3>Alex Green</h3>
+          <p>Commercial Advisor</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-bottom-team"></div>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="container">
+      <h2>What Clients Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-item">
+          <p>
+            "Agents Elite went above and beyond. They found our dream home and made the process
+            smooth from start to finish."
+          </p>
+          <h4>- Sarah W.</h4>
+        </div>
+        <div class="testimonial-item">
+          <p>
+            "Great communication and dedication. Their marketing strategy sold our condo
+            within a week, over asking price!"
+          </p>
+          <h4>- Mark T.</h4>
+        </div>
+        <div class="testimonial-item">
+          <p>
+            "Professional, knowledgeable, and truly caring. I'll definitely work with them
+            again for my future real estate investments."
+          </p>
+          <h4>- Emily R.</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-bottom-testimonials"></div>
+
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <h2>Get In Touch</h2>
+      <p>We’d love to help with your real estate needs. Let us know how we can assist!</p>
+      <!-- 
+        NOTE: action="#" won't actually send data anywhere.
+        Replace "#" with your server endpoint or a form handling service if needed.
+      -->
+      <form class="contact-form" action="#" method="post" novalidate>
+        <div class="form-row">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your Full Name" required />
+        </div>
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="name@example.com" required />
+        </div>
+        <div class="form-row">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="How can we help?" required></textarea>
+        </div>
+        <button type="submit" class="submit-button">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Agents Elite. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
